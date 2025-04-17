@@ -1,1 +1,232 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Macro Degen Newsletter</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    @keyframes rocketRumble {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(-2px, -2px) rotate(-2deg); }
+      50% { transform: translate(2px, 2px) rotate(2deg); }
+      75% { transform: translate(-2px, 2px) rotate(-2deg); }
+      100% { transform: translate(2px, -2px) rotate(2deg); }
+    }
+
+    @keyframes rocketLaunch {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
+    }
+
+    .rocket-emoji {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .sib-form-block__button:hover .rocket-emoji {
+      animation: rocketRumble 0.3s infinite;
+    }
+
+    .sib-form-block__button:active .rocket-emoji {
+      animation: rocketLaunch 0.5s forwards;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #012230;
+      color: #FFFFFF;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ancient_Roman_statue_of_a_man_with_red_laser_eyes.png/800px-Ancient_Roman_statue_of_a_man_with_red_laser_eyes.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .hero-image {
+      max-width: 100%;
+      width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .form-wrapper {
+      background-color: rgba(0, 0, 0, 0.8);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .form-wrapper h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #FF4747;
+      text-align: center;
+    }
+
+    .form-wrapper p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: #ccc;
+      text-align: center;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      color: #FF4747;
+      font-size: 2.5rem;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+      font-weight: 700;
+    }
+
+    .hidden-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .error-message {
+      color: #FF4747;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
+</head>
+<body>
+  <img class="hero-image" src="https://cryptotaxprep.io/wp-content/uploads/2025/04/ChatGPT-Image-Apr-17-2025-01_26_01-PM.png" alt="Macro Degen Hero Image">
+  <div class="form-wrapper">
+    <!-- Begin Brevo Form -->
+    <div class="sib-form" style="text-align: center; background-color: transparent;">
+      <div id="sib-form-container" class="sib-form-container">
+        <form id="sib-form" method="POST" action="https://sibforms.com/serve/MUIFAHt7Nc1e73qv_LJ6x9CGsh6J-YwKjvGjsu97IO8m5HsSM1jwVZvFI1zwNf_5YLEVFMYUMGZKbrDMpfbdFMC31d9WGikFYsf0EHtWt-dT7CCElTPaus3jDclmiX0dL4lGCpi_hec58TtKTTvgGaL3bH-2vjiuMB4U90606oP9-EHhGPRhCwIuLHEpjyXSoq7EMibn52RJvHef">
+          <div style="padding: 8px 0;">
+            <div class="sib-form-block" style="font-size:40px; text-align:center; font-weight:700; font-family:'Inter', sans-serif; color:#FF4747;">
+              <h1>Join 10,000+ Degens Reading <span style="color:#d1b985; font-style: italic;">Macro Degen</span></h1>
+            </div>
+          </div>
+          <div style="padding: 8px 0;">
+            <div class="sib-form-block" style="font-size:16px; text-align:center; font-family:'Inter', sans-serif; color:#CCCCCC;">
+              <div class="sib-text-form-block">
+                <p>The sharpest, funniest, and most brutally honest crypto newsletter in the game. No fluff. No shills. <br />Just what matters—daily, in your inbox.</p>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 8px 0;">
+            <div class="sib-input sib-form-block">
+              <div class="form__entry entry_block">
+                <div class="form__label-row">
+                  <label class="entry__label" style="font-weight: 700; font-size:16px; font-family:'Inter', sans-serif; color:#FFFFFF; text-align:left;" for="EMAIL" data-required="*">Enter your email address to subscribe</label>
+                  <div class="entry__field">
+                    <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Enter Your Email Address" data-required="true" required style="color: #FFFFFF; background-color: #012230; border: 1px solid #8390A4; padding: 10px; border-radius: 4px;" />
+                  </div>
+                </div>
+                <div id="email-error" class="error-message">Please enter a valid email address</div>
+                <input type="text" name="name" class="hidden-field" tabindex="-1" autocomplete="off">
+                <input type="text" name="company" class="hidden-field" tabindex="-1" autocomplete="off">
+                <input type="text" name="website" class="hidden-field" tabindex="-1" autocomplete="off">
+                <p style="font-size: 12px; font-family: 'Inter', sans-serif; color: #8390A4; margin-top: 8px; text-align: left;">We respect your privacy. We never share your email. <br />Not even with that one guy in Discord who "has a project."</p>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 8px 0;">
+            <div class="sib-form-block" style="text-align: center">
+              <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; font-weight:700; font-family:'Inter', sans-serif; color:#FFFFFF; background-color:#FF4747; border-radius:3px; border:none; padding: 12px 24px;" type="submit">
+                SUBSCRIBE NOW <span class="rocket-emoji">🚀</span>
+              </button>
+            </div>
+          </div>
+          <input type="text" name="email_address_check" value="" class="input--hidden">
+          <input type="hidden" name="locale" value="en">
+          <input type="hidden" name="html_type" value="simple">
+        </form>
+      </div>
+      <div id="success-message" class="success-message">
+        <h1>You're in! Welcome to Macro Degen—your inbox just got smarter.</h1>
+      </div>
+    </div>
+    <!-- End Brevo Form -->
+  </div>
+
+  <script>
+    document.getElementById('sib-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get the email input
+      const emailInput = document.getElementById('EMAIL');
+      const emailError = document.getElementById('email-error');
+      
+      // More strict email validation
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      
+      // Additional checks
+      const email = emailInput.value.trim();
+      if (!emailRegex.test(email)) {
+        emailError.style.display = 'block';
+        return;
+      }
+      
+      // Check for common junk patterns
+      if (
+        email.includes('..') || // Double dots
+        email.startsWith('.') || // Starts with dot
+        email.endsWith('.') || // Ends with dot
+        email.split('@')[0].length < 2 || // Local part too short
+        email.split('@')[1].length < 4 || // Domain part too short
+        email.split('@')[1].split('.').length < 2 // Missing TLD
+      ) {
+        emailError.style.display = 'block';
+        return;
+      }
+      
+      // Check hidden fields
+      const hiddenFields = this.querySelectorAll('.hidden-field');
+      for (const field of hiddenFields) {
+        if (field.value) {
+          // If any hidden field is filled, likely a bot
+          return;
+        }
+      }
+      
+      const formData = new FormData(this);
+      
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      })
+      .then(() => {
+        // Hide the form
+        document.getElementById('sib-form-container').style.display = 'none';
+        // Show success message
+        document.getElementById('success-message').style.display = 'block';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('There was an error submitting the form. Please try again.');
+      });
+    });
+
+    // Clear error message when user starts typing
+    document.getElementById('EMAIL').addEventListener('input', function() {
+      document.getElementById('email-error').style.display = 'none';
+    });
+  </script>
+</body>
+</html>
