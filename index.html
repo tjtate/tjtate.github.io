@@ -44,15 +44,11 @@
       flex-direction: column;
       min-height: 100vh;
       padding: 20px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Ancient_Roman_statue_of_a_man_with_red_laser_eyes.png/800px-Ancient_Roman_statue_of_a_man_with_red_laser_eyes.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
     }
 
     .hero-image {
-      max-width: 100%;
-      width: 600px;
+      max-width: 45%;
+      width: auto;
       margin-bottom: 30px;
     }
 
@@ -106,11 +102,49 @@
       display: none;
       font-family: 'Inter', sans-serif;
     }
+
+    /* Mobile Styles */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 10px;
+        justify-content: flex-start;
+        padding-top: 10px;
+        min-height: initial;
+      }
+
+      .hero-image {
+        max-width: 80%;
+        margin-bottom: 10px;
+      }
+
+      .form-wrapper {
+        padding: 1.25rem;
+      }
+
+      .sib-form-block[style*="font-size:40px"] {
+        font-size: 20px !important;
+      }
+
+      .sib-form-block h1 {
+        font-size: 20px !important;
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+
+      .sib-text-form-block p {
+        font-size: 14px !important;
+        line-height: 1.4;
+      }
+
+      div[style*="padding: 8px 0"] {
+        padding: 4px 0 !important;
+      }
+    }
   </style>
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 </head>
 <body>
-  <img class="hero-image" src="https://cryptotaxprep.io/wp-content/uploads/2025/04/ChatGPT-Image-Apr-17-2025-01_26_01-PM.png" alt="Macro Degen Hero Image">
+  <img class="hero-image" src="images/hero.png" alt="Macro Degen Hero Image">
   <div class="form-wrapper">
     <!-- Begin Brevo Form -->
     <div class="sib-form" style="text-align: center; background-color: transparent;">
@@ -132,16 +166,15 @@
             <div class="sib-input sib-form-block">
               <div class="form__entry entry_block">
                 <div class="form__label-row">
-                  <label class="entry__label" style="font-weight: 700; font-size:16px; font-family:'Inter', sans-serif; color:#FFFFFF; text-align:left;" for="EMAIL" data-required="*">Enter your email address to subscribe</label>
+                  <label class="entry__label" style="font-weight: 700; font-size:16px; font-family:'Inter', sans-serif; color:#FFFFFF; text-align:center;" for="EMAIL" data-required="*">Enter your email address to subscribe</label>
                   <div class="entry__field">
-                    <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Enter Your Email Address" data-required="true" required style="color: #FFFFFF; background-color: #012230; border: 1px solid #8390A4; padding: 10px; border-radius: 4px;" />
+                    <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Enter Your Email Address" data-required="true" required style="color: #FFFFFF; background-color: #012230; border: 1px solid #8390A4; padding: 10px; border-radius: 4px; text-align: center;" />
                   </div>
                 </div>
-                <div id="email-error" class="error-message">Please enter a valid email address</div>
+                <div id="email-error" class="error-message" style="text-align: center;">Please enter a valid email address</div>
                 <input type="text" name="name" class="hidden-field" tabindex="-1" autocomplete="off">
                 <input type="text" name="company" class="hidden-field" tabindex="-1" autocomplete="off">
                 <input type="text" name="website" class="hidden-field" tabindex="-1" autocomplete="off">
-                <p style="font-size: 12px; font-family: 'Inter', sans-serif; color: #8390A4; margin-top: 8px; text-align: left;">We respect your privacy. We never share your email. <br />Not even with that one guy in Discord who "has a project."</p>
               </div>
             </div>
           </div>
@@ -151,6 +184,9 @@
                 SUBSCRIBE NOW <span class="rocket-emoji">🚀</span>
               </button>
             </div>
+          </div>
+          <div style="padding: 8px 0;">
+            <p style="font-size: 12px; font-family: 'Inter', sans-serif; color: #8390A4; margin-top: 8px; text-align: center;">We respect your privacy. We never share your email. <br />Not even with that one guy in Discord who "has a project."</p>
           </div>
           <input type="text" name="email_address_check" value="" class="input--hidden">
           <input type="hidden" name="locale" value="en">
