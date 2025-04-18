@@ -13,33 +13,90 @@
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
     @keyframes rocketRumble {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      25% { transform: translate(-2px, -2px) rotate(-2deg); }
-      50% { transform: translate(2px, 2px) rotate(2deg); }
-      75% { transform: translate(-2px, 2px) rotate(-2deg); }
-      100% { transform: translate(2px, -2px) rotate(2deg); }
+      0% { transform: translate(-2px, -2px) rotate(-45deg); }
+      25% { transform: translate(2px, 2px) rotate(-45deg); }
+      50% { transform: translate(-2px, 2px) rotate(-45deg); }
+      75% { transform: translate(2px, -2px) rotate(-45deg); }
+      100% { transform: translate(-2px, -2px) rotate(-45deg); }
     }
 
     @keyframes rocketLaunch {
-      0% { transform: translateY(0); opacity: 1; }
-      100% { transform: translateY(-100px); opacity: 0; }
+      0% { 
+        transform: translateY(0);
+        opacity: 1;
+      }
+      15% { 
+        transform: translateY(-200px);
+        opacity: 0.9;
+      }
+      30% { 
+        transform: translateY(-600px);
+        opacity: 0.7;
+      }
+      50% { 
+        transform: translateY(-1000px);
+        opacity: 0.3;
+      }
+      100% { 
+        transform: translateY(-1500px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes confetti {
+      0% {
+        transform: translate(0, -100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--end-x), 100vh) rotate(var(--end-rotation));
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        visibility: visible;
+      }
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .rocket-emoji {
       display: inline-block;
-      transition: transform 0.3s ease;
+      transform: rotate(0deg);
+      transition: transform 0.5s ease-in-out;
+      transform-origin: center center;
+      will-change: transform, opacity;
+      position: relative;
+      z-index: 2;
     }
 
     .sib-form {
       padding:0px !important;
     }
 
-    .sib-form-block__button:hover .rocket-emoji {
+    .sib-form-block__button:hover .rocket-emoji:not(.rocket-launching) {
+      transform: rotate(-45deg);
       animation: rocketRumble 0.3s infinite;
     }
 
-    .sib-form-block__button:active .rocket-emoji {
-      animation: rocketLaunch 0.5s forwards;
+    .rocket-launching {
+      animation: rocketLaunch 1s cubic-bezier(0.15, 0.5, 0.5, 1) forwards !important;
     }
 
     body {
@@ -94,6 +151,8 @@
       background-color: rgba(0, 0, 0, 0.8);
       border-radius: 8px;
       font-weight: 700;
+      opacity: 0;
+      transform: scale(0.8);
     }
 
     .hidden-field {
@@ -203,10 +262,62 @@
         font-size: 11px;
       }
     }
+
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #FF4747;
+      opacity: 0;
+      transform-style: preserve-3d;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+
+    .confetti:nth-child(2n) {
+      background-color: #27AE60;
+    }
+
+    .confetti:nth-child(3n) {
+      background-color: #d1b985;
+    }
+
+    .confetti:nth-child(4n) {
+      background-color: #FFFFFF;
+    }
+
+    .confetti-blast {
+      animation: confetti 3s cubic-bezier(0.1, 0.2, 0.1, 1) forwards;
+    }
+
+    .fade-out {
+      animation: fadeOut 0.5s ease-out forwards;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .sib-form-block__button {
+      position: relative;
+      z-index: 2;
+    }
   </style>
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
 </head>
 <body>
+  <div class="confetti-container" id="confetti-container"></div>
   <img class="hero-image" src="images/hero.png" alt="Macro Degen Hero Image">
   <div class="form-wrapper">
     <!-- Begin Brevo Form -->
@@ -264,17 +375,65 @@
   </div>
 
   <script>
-    document.getElementById('sib-form').addEventListener('submit', function(e) {
+    function createConfetti() {
+      const container = document.getElementById('confetti-container');
+      container.innerHTML = ''; // Clear previous confetti
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        
+        // Random position along the top
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        
+        // Random delay
+        confetti.style.animationDelay = Math.random() * 0.5 + 's';
+        
+        // Random size and shape
+        const size = Math.random() * 8 + 4;
+        const isRect = Math.random() > 0.5;
+        confetti.style.width = size + 'px';
+        confetti.style.height = isRect ? size + 'px' : size * 0.5 + 'px';
+        confetti.style.borderRadius = isRect ? '2px' : '50%';
+        
+        // Random rotation and 3D tilt
+        const tiltX = Math.random() * 60 - 30;
+        const tiltY = Math.random() * 60 - 30;
+        confetti.style.transform = `rotate3d(${Math.random()}, ${Math.random()}, ${Math.random()}, ${Math.random() * 360}deg) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        
+        // Random trajectory
+        const endX = (Math.random() * 200 - 100) + 'vw';
+        const endRotation = Math.random() * 1440 + 'deg';
+        confetti.style.setProperty('--end-x', endX);
+        confetti.style.setProperty('--end-rotation', endRotation);
+        
+        // Random animation duration
+        const duration = 2 + Math.random() * 2;
+        confetti.style.animationDuration = duration + 's';
+        
+        container.appendChild(confetti);
+        
+        // Trigger animation
+        setTimeout(() => {
+          confetti.classList.add('confetti-blast');
+        }, 10);
+      }
+    }
+
+    document.getElementById('sib-form').addEventListener('submit', async function(e) {
       e.preventDefault();
       
-      // Get the email input
+      // Get the email input and rocket
       const emailInput = document.getElementById('EMAIL');
       const emailError = document.getElementById('email-error');
+      const rocket = document.querySelector('.rocket-emoji');
+      const formContainer = document.getElementById('sib-form-container');
+      const successMessage = document.getElementById('success-message');
       
-      // More strict email validation
+      // Email validation
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       
-      // Additional checks
       const email = emailInput.value.trim();
       if (!emailRegex.test(email)) {
         emailError.style.display = 'block';
@@ -283,12 +442,12 @@
       
       // Check for common junk patterns
       if (
-        email.includes('..') || // Double dots
-        email.startsWith('.') || // Starts with dot
-        email.endsWith('.') || // Ends with dot
-        email.split('@')[0].length < 2 || // Local part too short
-        email.split('@')[1].length < 4 || // Domain part too short
-        email.split('@')[1].split('.').length < 2 // Missing TLD
+        email.includes('..') ||
+        email.startsWith('.') ||
+        email.endsWith('.') ||
+        email.split('@')[0].length < 2 ||
+        email.split('@')[1].length < 4 ||
+        email.split('@')[1].split('.').length < 2
       ) {
         emailError.style.display = 'block';
         return;
@@ -298,10 +457,15 @@
       const hiddenFields = this.querySelectorAll('.hidden-field');
       for (const field of hiddenFields) {
         if (field.value) {
-          // If any hidden field is filled, likely a bot
           return;
         }
       }
+
+      // Start rocket animation
+      rocket.classList.add('rocket-launching');
+      
+      // Wait for rocket animation to complete
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       const formData = new FormData(this);
       
@@ -311,10 +475,19 @@
         mode: 'no-cors'
       })
       .then(() => {
-        // Hide the form
-        document.getElementById('sib-form-container').style.display = 'none';
-        // Show success message
-        document.getElementById('success-message').style.display = 'block';
+        // Fade out entire form container
+        formContainer.classList.add('fade-out');
+
+        // Wait for fade out to complete before showing success message
+        setTimeout(() => {
+          // Hide form container completely
+          formContainer.style.display = 'none';
+          // Show and animate success message
+          successMessage.style.display = 'block';
+          successMessage.classList.add('fade-in');
+          // Start confetti
+          createConfetti();
+        }, 500); // Wait for fade-out animation to complete
       })
       .catch(error => {
         console.error('Error:', error);
