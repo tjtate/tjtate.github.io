@@ -25,6 +25,10 @@
       transition: transform 0.3s ease;
     }
 
+    .sib-form {
+      padding:0px !important;
+    }
+
     .sib-form-block__button:hover .rocket-emoji {
       animation: rocketRumble 0.3s infinite;
     }
@@ -62,7 +66,7 @@
 
     .form-wrapper h1 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin: 1rem;
       font-weight: 700;
       color: #FF4747;
       text-align: center;
@@ -103,6 +107,24 @@
       font-family: 'Inter', sans-serif;
     }
 
+    .sib-form {
+      padding:0px;
+    }
+
+    .sib-form-block__button:hover {
+      transform: scale(1.02);
+    }
+
+    .entry__field {
+      max-width: 200px;
+      margin: 0 auto;
+    }
+
+    .input {
+      width: 100%;
+      font-size: 24px !important;
+    }
+
     /* Mobile Styles */
     @media screen and (max-width: 768px) {
       body {
@@ -139,6 +161,15 @@
       div[style*="padding: 8px 0"] {
         padding: 4px 0 !important;
       }
+
+      .sib-form-block__button {
+        padding: 14px 28px !important;
+        font-size: 16px !important;
+      }
+
+      .entry__field {
+        max-width: 260px;
+      }
     }
   </style>
   <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
@@ -168,7 +199,7 @@
                 <div class="form__label-row">
                   <label class="entry__label" style="font-weight: 700; font-size:16px; font-family:'Inter', sans-serif; color:#FFFFFF; text-align:center;" for="EMAIL" data-required="*">Enter your email address to subscribe</label>
                   <div class="entry__field">
-                    <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Enter Your Email Address" data-required="true" required style="color: #FFFFFF; background-color: #012230; border: 1px solid #8390A4; padding: 10px; border-radius: 4px; text-align: center;" />
+                    <input class="input" type="text" id="EMAIL" name="EMAIL" autocomplete="off" placeholder="Enter Your Email Address" data-required="true" required style="color: #FFFFFF; background-color: #012230; border: 1px solid #8390A4; padding: 10px; border-radius: 4px; text-align: center; font-size: 16px;" />
                   </div>
                 </div>
                 <div id="email-error" class="error-message" style="text-align: center;">Please enter a valid email address</div>
@@ -180,7 +211,7 @@
           </div>
           <div style="padding: 8px 0;">
             <div class="sib-form-block" style="text-align: center">
-              <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:16px; font-weight:700; font-family:'Inter', sans-serif; color:#FFFFFF; background-color:#FF4747; border-radius:3px; border:none; padding: 12px 24px;" type="submit">
+              <button class="sib-form-block__button sib-form-block__button-with-loader" style="font-size:18px; font-weight:700; font-family:'Inter', sans-serif; color:#FFFFFF; background-color:#27AE60; border-radius:3px; border:none; padding: 16px 32px; transition: transform 0.2s ease;" type="submit">
                 SUBSCRIBE NOW <span class="rocket-emoji">🚀</span>
               </button>
             </div>
